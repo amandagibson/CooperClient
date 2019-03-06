@@ -7,7 +7,8 @@ const authenticate = async (email, password) => {
   const path = apiUrl + '/auth/sign_in';
   try {
     let response = await axios.post(path, { email: email, password: password })
-    await storeAuthCredentials(response)
+		await storeAuthCredentials(response)
+		sessionStorage.setItem('current_user', JSON.stringify({ id: response.data.data.id }));
     return { authenticated: true }
   } catch (error) {
     return { authenticated: false, message: error.response.data.errors[0] }
@@ -16,6 +17,7 @@ const authenticate = async (email, password) => {
 
 const storeAuthCredentials = ({ data, headers }) => {
   return new Promise((resolve) => {
+		debugger;
     const uid = headers['uid'],
       client = headers['client'],
       accessToken = headers['access-token'],
@@ -28,7 +30,7 @@ const storeAuthCredentials = ({ data, headers }) => {
       expiry: expiry,
       token_type: 'Bearer'
     }));
-    sessionStorage.setItem('current_user', JSON.stringify({ id: data.data.id }));
+
     resolve(true)
   })
 };
