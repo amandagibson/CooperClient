@@ -1,3 +1,5 @@
+require('../___mocks___/mocksConfig')
+
 describe('User attempts to login', () => {
 
 	beforeAll(async () => {
@@ -23,7 +25,7 @@ describe('User attempts to login', () => {
 		await page.type('input[id="email"]', 'wrongjohndoe@mail.com')
 		await page.type('input[id="password"]', 'wronpassword')
 		await page.click('button[id="submit"]')
-		await page.waitFor(1000)
+		await page.waitFor(2000)
 		await expect(page).toMatch('Invalid login credentials. Please try again.')
 	})
 })
