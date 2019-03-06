@@ -19,4 +19,18 @@ const saveData = (result) => {
   });
 };
 
-export { saveData }
+const getData = () => {
+  const headers = JSON.parse(sessionStorage.getItem(['credentials']));
+  const path = apiUrl + '/performance_data';
+  return new Promise((resolve, reject) => {
+    axios.get(path, {
+      headers: headers
+    })
+    .then(response => {
+      storeAuthCredentials(response);
+      resolve(response);
+    });
+  });
+};
+
+export { getData, saveData }
