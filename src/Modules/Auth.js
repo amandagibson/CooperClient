@@ -17,7 +17,6 @@ const authenticate = async (email, password) => {
 
 const storeAuthCredentials = ({ data, headers }) => {
   return new Promise((resolve) => {
-		debugger;
     const uid = headers['uid'],
       client = headers['client'],
       accessToken = headers['access-token'],
