@@ -1,4 +1,4 @@
-require('../___mocks___/mocksConfig')
+require('../__mocks__/mocksConfig')
 
 describe('User attempts to login', () => {
 

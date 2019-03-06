@@ -16,15 +16,21 @@ class App extends Component {
       authenticated: false,
       email: '',
       password: '',
-      message: ''
+			message: '',
+			entrySaved: false
     }
-  }
-
-	onChange(event) {
-		this.setState({
-			[event.target.id]: event.target.value
-		})
 	}
+
+	entryHandler() {
+		this.setState({ entrySaved: true });
+	}
+
+  onChange(event) {
+    this.setState({
+      [event.target.id]: event.target.value,
+      entrySaved: false
+    })
+  }
 
 	async onLogin(e) {
 		e.preventDefault();
@@ -71,13 +77,15 @@ class App extends Component {
           inputChangeHandler={this.onChange.bind(this)}
         />
 
-        <DisplayCooperResult
-          distance={this.state.distance}
-          gender={this.state.gender}
-          age={this.state.age}
-        />
+				<DisplayCooperResult
+						distance={this.state.distance}
+						gender={this.state.gender}
+						age={this.state.age}
+						authenticated={this.state.authenticated}
+						entrySaved={this.state.entrySaved}
+						entryHandler={this.entryHandler.bind(this)}
+					/>
         {renderLogin}
-
       </div>
     );
   }
