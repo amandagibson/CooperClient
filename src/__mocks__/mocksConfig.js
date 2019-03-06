@@ -1,7 +1,7 @@
 const MockResponses = require('./mockResponses')
 beforeAll(async () => {
 
-  const createResponse = (path, params, request) => {
+	const createResponse = (path, params, request) => {
     let response
     switch (path) {
       case 'sign_in':
@@ -11,12 +11,15 @@ beforeAll(async () => {
         })
         response = user || MockResponses.missingUserResponse
         return response
+      case 'performance_data':
+        return MockResponses.savingEntryResponse
     }
 
   }
 
   const requests = {
-    'sign_in': {}
+    'sign_in': {},
+    'performance_data': {}
   }
 
   await page.setRequestInterception(true);
