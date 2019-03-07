@@ -13,7 +13,6 @@ const saveData = (result) => {
       headers: headers
     })
     .then(response => {
-      storeAuthCredentials(response);
       resolve(response.data.message);
     });
   });
