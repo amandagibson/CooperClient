@@ -1,17 +1,21 @@
 import React, { Component } from 'react'
+import { Dropdown } from 'semantic-ui-react';
 
 class CalculationMethod extends Component {
 	render () {
-
+		const optionValues = [
+			{text: "metric", value: "metric"},
+			{text: "imperial", value: "imperial"}
+		]
 		return(
-			<div>
-			<select id="method" name="method" onChange= { this.props.onChangeValue}>
-			<option value="metric">metric</option>
-			<option value="imperial">imperial</option>
-			</select>
-			</div>
-			)
-		}
+			<Dropdown
+			selection
+			defaultValue={optionValues[0].value}
+			options={optionValues}
+			onChange={(e, {value}) => this.props.onChangeValue(value)}
+			/>
+		)
 	}
+}
 
 	export default CalculationMethod

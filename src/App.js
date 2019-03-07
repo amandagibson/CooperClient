@@ -6,7 +6,7 @@ import LoginForm from './Components/LoginForm';
 import { authenticate } from './Modules/Auth';
 import DisplayResult from './Components/displayResult';
 import CalculationMethod from './Components/CalculationMethod';
-import { Container, Grid, Header } from 'semantic-ui-react';
+import { Container, Grid, Header, Segment,Form } from 'semantic-ui-react';
 
 class App extends Component {
   constructor(props) {
@@ -32,8 +32,8 @@ class App extends Component {
     }
 	}
 
-	setInputType(e) {
-		this.setState({ method: e.target.value }, () => {
+	setInputType(value) {
+		this.setState({ method: value }, () => {
 			if (this.state.method === 'imperial') {
 				this.setState({ weightType: 'lbs', heightType: 'inches' });
 			} else if (this.state.method === 'metric') {
@@ -117,29 +117,73 @@ class App extends Component {
 			<Container>
 				<Grid centered columns={3}>
 					<Grid.Column>
-						<Header
-							as="h1"
-							textAlign="center"
-						>
-								Cooper
+						<Header as="h1"textAlign="center">
+								Cooper Test
 						</Header>
-				<InputFields
-          inputChangeHandler={this.onChange.bind(this)}
-        />
+						<Segment>
+							<InputFields
+								inputChangeHandler={this.onChange.bind(this)}
+							/>
 
-				<DisplayCooperResult
-					distance={this.state.distance}
-					gender={this.state.gender}
-					age={this.state.age}
-					authenticated={this.state.authenticated}
-					entrySaved={this.state.entrySaved}
-					entryHandler={this.entryHandler.bind(this)}
-				/>
-					{performanceDataIndex}
-					{renderLogin}
+							<DisplayCooperResult
+								distance={this.state.distance}
+								gender={this.state.gender}
+								age={this.state.age}
+								authenticated={this.state.authenticated}
+								entrySaved={this.state.entrySaved}
+								entryHandler={this.entryHandler.bind(this)}
+							/>
+							{performanceDataIndex}
+						</Segment>
+						</Grid.Column>
+					</Grid>
+				</Container>
+				<Container>
+					<Grid centered columns={3}>
+						<Grid.Column>
+						<Header as="h1"textAlign="center">
+								BMI Test
+						</Header>
+						<Segment>
+							<CalculationMethod
+								onChangeValue={this.setInputType.bind(this)}
+							/>
+							<Form type="large">
+								<Form.Input
+									fluid
+									name="weight"
+									placeholder={`Weight(${this.state.weightType})`}
+									value={this.state.weight}
+									onChange={(e) => this.setState({ weight: e.target.value })}
+								/>
+								<Form.Input
+									fluid
+									name="height"
+									placeholder={`Height(${this.state.heightType})`}
+									value={this.state.height}
+									onChange={(e) => this.setState({ height: e.target.value })}
+								/>
+							</Form>
+							<DisplayResult
+								method = {this.state.method}
+								weight={this.state.weight}
+								height={this.state.height}
+							/>
+							{/* <div className="input-field">
+								<label>Weight({this.state.weightType})</label>
+								<input name="weight" value={this.state.weight} onChange={(e) => this.setState({ weight: e.target.value })} />
+							</div>
+
+							<div className="input-field">
+								<label>Height({this.state.heightType})</label>
+								<input name="height" value={this.state.height} onChange={(e) => this.setState({ height: e.target.value })} />
+							</div> */}
+						</Segment>
 					</Grid.Column>
 				</Grid>
 			</Container>
+						{renderLogin}
+
         {/* <InputFields
           inputChangeHandler={this.onChange.bind(this)}
         />
@@ -153,11 +197,11 @@ class App extends Component {
 					entryHandler={this.entryHandler.bind(this)}
 				/> */}
   			{/* {performanceDataIndex}
-				{renderLogin} */} */}
-				<CalculationMethod
+				{renderLogin} */}
+				{/* <CalculationMethod
 					onChangeValue={this.setInputType.bind(this)}
-				/>
-				<div className="input-field">
+				/> */}
+				{/* <div className="input-field">
 					<label>Weight({this.state.weightType})</label>
 					<input name="weight" value={this.state.weight} onChange={(e) => this.setState({ weight: e.target.value })} />
 				</div>
@@ -165,12 +209,12 @@ class App extends Component {
 				<div className="input-field">
 					<label>Height({this.state.heightType})</label>
 					<input name="height" value={this.state.height} onChange={(e) => this.setState({ height: e.target.value })} />
-				</div>
-				<DisplayResult
+				</div> */}
+				{/* <DisplayResult
 					method = {this.state.method}
 					weight={this.state.weight}
 					height={this.state.height}
-				/>
+				/> */}
       </>
     );
   }
