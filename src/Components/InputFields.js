@@ -3,18 +3,17 @@ import React from 'react';
 const InputFields = (props) => {
 	return(
 		<>
-			<label>Distance</label>
-    	<input id="distance" onChange={props.inputChangeHandler}></input>
+		<select id="gender" onChange={props.inputChangeHandler}>
+			<option value="female">Female</option>
+			<option value="male">Male</option>
+		</select>
 
-			<select id="gender" onChange={props.inputChangeHandler}>
-					<option value="female">Female</option>
-					<option value="male">Male</option>
-			</select>
-
+		<label>Distance</label>
+			<input id="distance" onChange={props.inputChangeHandler}></input>
 			<label>Age</label>
-			<input id="age" onChange={props.inputChangeHandler}></input>
+		<input id="age" onChange={props.inputChangeHandler}></input>
 		</>
-	)
-}
+		)
+	}
 
-export default InputFields;
+	export default InputFields;

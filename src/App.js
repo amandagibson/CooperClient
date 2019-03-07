@@ -6,7 +6,7 @@ import LoginForm from './Components/LoginForm';
 import { authenticate } from './Modules/Auth';
 import DisplayResult from './Components/displayResult';
 import CalculationMethod from './Components/CalculationMethod';
-
+import { Container, Grid, Header } from 'semantic-ui-react';
 
 class App extends Component {
   constructor(props) {
@@ -113,8 +113,17 @@ class App extends Component {
     }
 
     return (
-      <div>
-        <InputFields
+			<>
+			<Container>
+				<Grid centered columns={3}>
+					<Grid.Column>
+						<Header
+							as="h1"
+							textAlign="center"
+						>
+								Cooper
+						</Header>
+				<InputFields
           inputChangeHandler={this.onChange.bind(this)}
         />
 
@@ -126,8 +135,25 @@ class App extends Component {
 					entrySaved={this.state.entrySaved}
 					entryHandler={this.entryHandler.bind(this)}
 				/>
-  			{performanceDataIndex}
-				{renderLogin}
+					{performanceDataIndex}
+					{renderLogin}
+					</Grid.Column>
+				</Grid>
+			</Container>
+        {/* <InputFields
+          inputChangeHandler={this.onChange.bind(this)}
+        />
+
+				{/* <DisplayCooperResult
+					distance={this.state.distance}
+					gender={this.state.gender}
+					age={this.state.age}
+					authenticated={this.state.authenticated}
+					entrySaved={this.state.entrySaved}
+					entryHandler={this.entryHandler.bind(this)}
+				/> */}
+  			{/* {performanceDataIndex}
+				{renderLogin} */} */}
 				<CalculationMethod
 					onChangeValue={this.setInputType.bind(this)}
 				/>
@@ -145,7 +171,7 @@ class App extends Component {
 					weight={this.state.weight}
 					height={this.state.height}
 				/>
-      </div>
+      </>
     );
   }
 }
