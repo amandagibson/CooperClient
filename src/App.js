@@ -4,6 +4,8 @@ import DisplayPerformanceData from './Components/DisplayPerformanceData';
 import InputFields from './Components/InputFields';
 import LoginForm from './Components/LoginForm';
 import { authenticate } from './Modules/Auth';
+import DisplayResult from './Components/displayResult';
+import CalculationMethod from './Components/CalculationMethod';
 
 
 class App extends Component {
@@ -20,9 +22,24 @@ class App extends Component {
 			message: '',
 			entrySaved: false,
 			renderIndex: false,
-			updateIndex: false
+			updateIndex: false,
+			weight: '',
+			height: '',
+			method: 'metric',
+			weightType: 'kg',
+			heightType: 'cm'
 
     }
+	}
+
+	setInputType(e) {
+		this.setState({ method: e.target.value }, () => {
+			if (this.state.method === 'imperial') {
+				this.setState({ weightType: 'lbs', heightType: 'inches' });
+			} else if (this.state.method === 'metric') {
+				this.setState({ weightType: 'kg', heightType: 'cm' });
+			}
+		})
 	}
 
 	entryHandler() {
@@ -110,7 +127,24 @@ class App extends Component {
 					entryHandler={this.entryHandler.bind(this)}
 				/>
   			{performanceDataIndex}
-        {renderLogin}
+				{renderLogin}
+				<CalculationMethod
+					onChangeValue={this.setInputType.bind(this)}
+				/>
+				<div className="input-field">
+					<label>Weight({this.state.weightType})</label>
+					<input name="weight" value={this.state.weight} onChange={(e) => this.setState({ weight: e.target.value })} />
+				</div>
+
+				<div className="input-field">
+					<label>Height({this.state.heightType})</label>
+					<input name="height" value={this.state.height} onChange={(e) => this.setState({ height: e.target.value })} />
+				</div>
+				<DisplayResult
+					method = {this.state.method}
+					weight={this.state.weight}
+					height={this.state.height}
+				/>
       </div>
     );
   }
