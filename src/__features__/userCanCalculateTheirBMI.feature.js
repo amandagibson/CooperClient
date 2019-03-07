@@ -1,15 +1,11 @@
 describe('BMI Converter', () => {
     beforeAll(async () => {
         jest.setTimeout(100000);
-        await page.goto('http://localhost:3000');
+        await page.goto('http://localhost:3001');
     })
 
     beforeEach(async () => {
         await page.reload();
-    });
-
-    it('should display "The React"', async () => {
-        await expect(page).toMatch('The React');
     });
 
     describe('Metric method', async () => {
