@@ -6,7 +6,8 @@ import LoginForm from './Components/LoginForm';
 import { authenticate } from './Modules/Auth';
 import DisplayResult from './Components/displayResult';
 import CalculationMethod from './Components/CalculationMethod';
-import { Container, Grid, Header, Segment,Form } from 'semantic-ui-react';
+import { Container, Grid, Header, Segment, Form, Button } from 'semantic-ui-react';
+import { SidebarMenu } from './Components/SidebarMenu';
 
 class App extends Component {
   constructor(props) {
@@ -105,7 +106,7 @@ class App extends Component {
       } else {
         renderLogin = (
           <>
-            <button id="login" onClick={() => this.setState({ renderLoginForm: true })}>Login</button>
+            <Button id="login" color="teal" onClick={() => this.setState({ renderLoginForm: true })}>Login</Button>
             <p>{this.state.message}</p>
           </>
         )
@@ -114,6 +115,7 @@ class App extends Component {
 
     return (
 			<>
+			<SidebarMenu/>
 			<Container>
 				<Grid centered columns={3}>
 					<Grid.Column>
