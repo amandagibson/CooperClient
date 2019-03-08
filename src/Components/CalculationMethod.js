@@ -12,7 +12,7 @@ class CalculationMethod extends Component {
 			selection
 			defaultValue={optionValues[0].value}
 			options={optionValues}
-			onChange={(e, {value}) => this.props.onChangeValue(value)}
+			onChange={(e,{value}) => this.props.onChangeValue(value)}
 			/>
 		)
 	}
