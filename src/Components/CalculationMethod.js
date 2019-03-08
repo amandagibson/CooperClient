@@ -10,6 +10,7 @@ class CalculationMethod extends Component {
 		return(
 			<Dropdown
 			selection
+			id="method"
 			defaultValue={optionValues[0].value}
 			options={optionValues}
 			onChange={(e,{value}) => this.props.onChangeValue(value)}

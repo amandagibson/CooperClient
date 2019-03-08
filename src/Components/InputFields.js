@@ -13,6 +13,7 @@ const InputFields = (props) => {
 			id="gender"
 			defaultValue={optionValues[0].value}
 			options={optionValues}
+			onChange={(e,{value}) => props.handleGenderChange(value)}
 		/>
 
 		<Form type="large">

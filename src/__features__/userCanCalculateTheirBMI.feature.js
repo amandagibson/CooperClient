@@ -10,7 +10,7 @@ describe('BMI Converter', () => {
 
     describe('Metric method', async () => {
         beforeEach( async () => {
-            await page.select('select[id="method"]', 'metric')
+            await page.select('selection[id="method"]', 'metric')
             await page.type('input[name="weight"]', '95')
             await page.type('input[name="height"]', '186')
         })

@@ -55,6 +55,10 @@ class App extends Component {
 		this.setState({ updateIndex: false });
 	}
 
+	handleGenderChange(value) {
+		this.setState({ gender: value})
+	}
+
   onChange(event) {
     this.setState({
       [event.target.id]: event.target.value,
@@ -123,6 +127,7 @@ class App extends Component {
 							<Segment>
 								<InputFields
 									inputChangeHandler={this.onChange.bind(this)}
+									handleGenderChange={this.handleGenderChange.bind(this)}
 								/>
 
 								<DisplayCooperResult
