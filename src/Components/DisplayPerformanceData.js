@@ -43,4 +43,4 @@ class DisplayPerformanceData extends Component {
     )
   }
 }
-  export default DisplayPerformanceData
+export default DisplayPerformanceData

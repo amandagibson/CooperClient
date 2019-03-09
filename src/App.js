@@ -195,6 +195,10 @@ class App extends Component {
 									method = {this.state.method}
 									weight={this.state.weight}
 									height={this.state.height}
+									authenticated={this.state.authenticated}
+									entrySaved={this.state.entrySaved}
+									entryHandler={this.entryHandler.bind(this)}
+
 								/>
 							</Segment>
 							{renderLogin}
