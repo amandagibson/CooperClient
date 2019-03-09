@@ -14,7 +14,7 @@ export class SidebarMenu extends Component {
 				Sign-in
 				</Menu.Item>
 				<Menu.Item as='a'
-					id="data" onClick={this.props.handleData}
+					id="data" onClick={this.props.handleCooperGraph}
 				>
 				<Icon name='chart line' />
 				Performance-data

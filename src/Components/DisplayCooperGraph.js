@@ -17,14 +17,14 @@ class DisplayCooperGraph extends Component {
 	async getPerformanceData() {
 		let result = await getData();
 		this.setState({performanceData: result.data.entries}, () => {
-			this.props.indexUpdated();
+			this.props.handleCooperGraph();
 		})
 	}
 
 	render () {
 		let dataIndex;
 
-		if (this.props.updateIndex === true) {
+		if (this.props.renderCooperGraph === true) {
 			this.getPerformanceData();
 		}
 		if (this.state.performanceData != null) {

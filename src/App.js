@@ -29,8 +29,8 @@ class App extends Component {
 			height: '',
 			method: 'metric',
 			weightType: 'kg',
-			heightType: 'cm'
-
+			heightType: 'cm',
+			renderCooperGraph: false
     }
 	}
 
@@ -50,6 +50,10 @@ class App extends Component {
 
 	handleLoginState() {
 		this.setState({renderLoginForm: true})
+	}
+
+	handleCooperGraph() {
+		this.setState({renderCooperGraph: true })
 	}
 
 	indexUpdated() {
@@ -81,31 +85,40 @@ class App extends Component {
     let renderLogin;
 		let user;
 		let performanceDataIndex;
+		let renderGraph;
 
 		if (this.state.authenticated === true) {
 			user = JSON.parse(sessionStorage.getItem('credentials')).uid;
 			renderLogin = (
 				<p>Hi {user}</p>
 			)
-			if (this.state.renderIndex === true) {
+			if(this.state.renderCooperGraph === true) {
+				renderGraph = (
+				<>
+					<DisplayCooperGraph
+						renderCooperGraph={this.state.renderCooperGraph}
+						handleCooperGraph={this.handleCooperGraph.bind(this)}
+					/>
+				</>
+				)
+			}
+			 else if (this.state.renderIndex === true) {
 				performanceDataIndex = (
 					<>
 						<DisplayPerformanceData
 							updateIndex={this.state.updateIndex}
 							indexUpdated={this.indexUpdated.bind(this)}
 						/>
-						<DisplayCooperGraph
-							updateIndex={this.state.updateIndex}
-							indexUpdated={this.indexUpdated.bind(this)}
-						/>
 						<Button onClick={() => this.setState({ renderIndex: false })}>Hide past entries</Button>
 					</>
 				)
-			} else {
+			}
+			 else {
 				performanceDataIndex = (
 					<Button color="grey" id="show-index" onClick={() => this.setState({ renderIndex: true })}>Show past entries</Button>
 				)
 			}
+
 		} else {
       if (this.state.renderLoginForm === true) {
         renderLogin = (
@@ -123,6 +136,7 @@ class App extends Component {
 				<Container>
 					<SidebarMenu
 						handleLoginState={this.handleLoginState.bind(this)}
+						handleCooperGraph={this.handleCooperGraph.bind(this)}
 					/>
 					<Grid centered columns={3}>
 						<Grid.Column>
@@ -147,6 +161,9 @@ class App extends Component {
 							</Segment>
 							</Grid.Column>
 						</Grid>
+					</Container>
+					<Container centered>
+					{renderGraph}
 					</Container>
 					<Container>
 						<Grid centered columns={3}>
