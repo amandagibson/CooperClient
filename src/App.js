@@ -8,6 +8,7 @@ import DisplayResult from './Components/displayResult';
 import CalculationMethod from './Components/CalculationMethod';
 import { Container, Grid, Header, Segment, Form, Button } from 'semantic-ui-react';
 import SidebarMenu from './Components/SidebarMenu';
+import DisplayCooperGraph from './Components/DisplayCooperGraph';
 
 class App extends Component {
   constructor(props) {
@@ -90,6 +91,10 @@ class App extends Component {
 				performanceDataIndex = (
 					<>
 						<DisplayPerformanceData
+							updateIndex={this.state.updateIndex}
+							indexUpdated={this.indexUpdated.bind(this)}
+						/>
+						<DisplayCooperGraph
 							updateIndex={this.state.updateIndex}
 							indexUpdated={this.indexUpdated.bind(this)}
 						/>
