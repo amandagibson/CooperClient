@@ -30,7 +30,8 @@ class App extends Component {
 			method: 'metric',
 			weightType: 'kg',
 			heightType: 'cm',
-			renderCooperGraph: false
+			renderCooperGraph: false,
+			updateCooperGraph: false
     }
 	}
 
@@ -45,7 +46,7 @@ class App extends Component {
 	}
 
 	entryHandler(e) {
-    this.setState({ entrySaved: true, updateIndex: true });
+    this.setState({ entrySaved: true, updateIndex: true, updateCooperGraph: true});
 	}
 
 	handleLoginState() {
@@ -55,6 +56,12 @@ class App extends Component {
 	handleCooperGraph() {
 		this.setState({renderCooperGraph: true })
 	}
+
+	graphUpdated() {
+		this.setState({updateCooperGraph:false})
+	}
+
+
 
 	indexUpdated() {
 		this.setState({ updateIndex: false });
@@ -92,17 +99,7 @@ class App extends Component {
 			renderLogin = (
 				<p>Hi {user}</p>
 			)
-			if(this.state.renderCooperGraph === true) {
-				renderGraph = (
-				<>
-					<DisplayCooperGraph
-						renderCooperGraph={this.state.renderCooperGraph}
-						handleCooperGraph={this.handleCooperGraph.bind(this)}
-					/>
-				</>
-				)
-			}
-			 else if (this.state.renderIndex === true) {
+			if (this.state.renderIndex === true) {
 				performanceDataIndex = (
 					<>
 						<DisplayPerformanceData
@@ -116,6 +113,16 @@ class App extends Component {
 			 else {
 				performanceDataIndex = (
 					<Button color="grey" id="show-index" onClick={() => this.setState({ renderIndex: true })}>Show past entries</Button>
+				)
+			}
+			if(this.state.renderCooperGraph === true) {
+				renderGraph = (
+				<>
+					<DisplayCooperGraph
+						updateCooperGraph={this.state.updateCooperGraph}
+						graphUpdated={this.graphUpdated.bind(this)}
+					/>
+				</>
 				)
 			}
 
@@ -159,12 +166,11 @@ class App extends Component {
 								/>
 								{performanceDataIndex}
 							</Segment>
-							</Grid.Column>
-						</Grid>
-					</Container>
-					<Container centered>
+						</Grid.Column>
+					</Grid>
 					{renderGraph}
-					</Container>
+				</Container>
+
 					<Container>
 						<Grid centered columns={3}>
 							<Grid.Column>
