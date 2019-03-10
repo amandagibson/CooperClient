@@ -13,7 +13,7 @@ class DisplayResult extends Component {
 		return bmiCalculation(weight, height, method);
 	}
 
-	async saveCooperData() {
+	async saveBmiData() {
 		const result = this.calculate();
 		const values = {
 			weight: this.props.weight,
@@ -32,13 +32,13 @@ class DisplayResult extends Component {
 		let results;
 		let saveButton;
 
-		if (this.props.authenticated === true && this.props.entrySaved === false) {
+		if (this.props.authenticated === true && this.props.bmiEntrySaved === false) {
 			saveButton = (
 				<>
-					<Button color="green" id="save-result" onClick={this.saveCooperData.bind(this)}>Save entry</Button>
+					<Button color="green" id="save-result" onClick={this.saveBmiData.bind(this)}>Save entry</Button>
 				</>
 			)
-		} else if (this.props.authenticated === true && this.props.entrySaved === true) {
+		} else if (this.props.authenticated === true && this.props.bmiEntrySaved === true) {
 			saveButton = (
 				<>
 					<p>Your entry was saved</p>

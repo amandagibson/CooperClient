@@ -23,6 +23,7 @@ class App extends Component {
       password: '',
 			message: '',
 			entrySaved: false,
+			bmiEntrySaved: false,
 			renderIndex: false,
 			updateIndex: false,
 			weight: '',
@@ -46,7 +47,7 @@ class App extends Component {
 	}
 
 	entryHandler(e) {
-    this.setState({ entrySaved: true, updateIndex: true, updateCooperGraph: true});
+    this.setState({ entrySaved: true, bmiEntrySaved: true, updateIndex: true, updateCooperGraph: true});
 	}
 
 	handleLoginState() {
@@ -74,9 +75,10 @@ class App extends Component {
   onChange(event) {
     this.setState({
       [event.target.id]: event.target.value,
-      entrySaved: false
+			entrySaved: false,
     })
-  }
+	}
+
 
 	async onLogin(e) {
 		e.preventDefault();
@@ -187,14 +189,15 @@ class App extends Component {
 										name="weight"
 										placeholder={`Weight(${this.state.weightType})`}
 										value={this.state.weight}
-										onChange={(e) => this.setState({ weight: e.target.value })}
+										onChange={(e) => this.setState({ weight: e.target.value, bmiEntrySaved: false })}
+
 									/>
 									<Form.Input
 										fluid
 										name="height"
 										placeholder={`Height(${this.state.heightType})`}
 										value={this.state.height}
-										onChange={(e) => this.setState({ height: e.target.value })}
+										onChange={(e) => this.setState({ height: e.target.value, bmiEntrySaved: false })}
 									/>
 								</Form>
 								<DisplayResult
@@ -202,7 +205,7 @@ class App extends Component {
 									weight={this.state.weight}
 									height={this.state.height}
 									authenticated={this.state.authenticated}
-									entrySaved={this.state.entrySaved}
+									bmiEntrySaved={this.state.bmiEntrySaved}
 									entryHandler={this.entryHandler.bind(this)}
 
 								/>
