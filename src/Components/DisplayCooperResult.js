@@ -4,7 +4,6 @@ import { saveData } from '../Modules/PerformanceData';
 import { Button } from 'semantic-ui-react'
 
 class DisplayCooperResult extends Component {
-
 	calculate() {
 		return CooperCalculator(this.props.distance, this.props.gender, this.props.age);
 	}
