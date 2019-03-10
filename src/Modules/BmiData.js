@@ -9,7 +9,7 @@ const saveData = (result, values) => {
 	const { weight , height } = values
   return new Promise((resolve, reject) => {
     axios.post(path, {
-      performance_data: {
+      bmi_data: {
 				data:
 				{ message: result,
 					weight: weight,
