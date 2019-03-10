@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const apiUrl = 'http://localhost:3000/';
+const apiUrl = 'https://vo-cooper-api.herokuapp.com/';
 
 
 const authenticate = async (email, password) => {
