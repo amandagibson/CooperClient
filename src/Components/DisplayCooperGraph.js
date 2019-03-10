@@ -35,10 +35,10 @@ class DisplayCooperGraph extends Component {
 			distances.push(entry.data.distance)
 			labels.push(entry.data.message)
 			})
-			debugger;
 			const data = {
 				datasets: [{
 					data: distances,
+					label: "saved distances",
 				}],
 				labels: labels,
 			}
