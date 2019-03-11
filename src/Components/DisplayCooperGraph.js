@@ -44,7 +44,7 @@ class DisplayCooperGraph extends Component {
 			}
 			dataIndex = (
 				<>
-				<Grid columns={2} doubling stackable>
+				<Grid columns={1} doubling stackable>
 					<Grid.Column>
 						<Line ref='chart' data={data} />
 					</Grid.Column>
