@@ -5,6 +5,7 @@ import InputFields from './Components/InputFields';
 import LoginForm from './Components/LoginForm';
 import { authenticate } from './Modules/Auth';
 import DisplayResult from './Components/displayResult';
+import DisplayBmiData from './Components/DisplayBmiData';
 import CalculationMethod from './Components/CalculationMethod';
 import { Container, Grid, Header, Segment, Form, Button } from 'semantic-ui-react';
 import SidebarMenu from './Components/SidebarMenu';
@@ -26,6 +27,8 @@ class App extends Component {
 			bmiEntrySaved: false,
 			renderIndex: false,
 			updateIndex: false,
+			renderBmiIndex: false,
+			updateBmiIndex: false,
 			weight: '',
 			height: '',
 			method: 'metric',
@@ -47,7 +50,7 @@ class App extends Component {
 	}
 
 	entryHandler(e) {
-    this.setState({ entrySaved: true, bmiEntrySaved: true, updateIndex: true, updateCooperGraph: true});
+    this.setState({ entrySaved: true, bmiEntrySaved: true, updateIndex: true, updateBmiIndex: true, updateCooperGraph: true});
 	}
 
 	handleLoginState() {
@@ -62,10 +65,12 @@ class App extends Component {
 		this.setState({updateCooperGraph:false})
 	}
 
-
-
 	indexUpdated() {
 		this.setState({ updateIndex: false });
+	}
+
+	bmiUpdated() {
+		this.setState({ updateBmiIndex: false})
 	}
 
 	handleGenderChange(value) {
@@ -95,6 +100,7 @@ class App extends Component {
 		let user;
 		let performanceDataIndex;
 		let renderGraph;
+		let bmiDataIndex;
 
 		if (this.state.authenticated === true) {
 			user = JSON.parse(sessionStorage.getItem('credentials')).uid;
@@ -111,8 +117,7 @@ class App extends Component {
 						<Button onClick={() => this.setState({ renderIndex: false })}>Hide past entries</Button>
 					</>
 				)
-			}
-			 else {
+			} else {
 				performanceDataIndex = (
 					<Button color="grey" id="show-index" onClick={() => this.setState({ renderIndex: true })}>Show past entries</Button>
 				)
@@ -125,6 +130,21 @@ class App extends Component {
 						graphUpdated={this.graphUpdated.bind(this)}
 					/>
 				</>
+				)
+			}
+			if(this.state.renderBmiIndex === true) {
+				bmiDataIndex = (
+					<>
+						<DisplayBmiData
+							updateBmiIndex={this.state.updateBmiIndex}
+							bmiUpdated={this.bmiUpdated.bind(this)}
+						/>
+						<Button onClick={() => this.setState({ renderBmiIndex: false })}>Hide past entries</Button>
+					</>
+				)
+			} else {
+				bmiDataIndex = (
+					<Button color="grey" id="show-index" onClick={() => this.setState({ renderBmiIndex: true })}>Show past entries</Button>
 				)
 			}
 
@@ -209,6 +229,7 @@ class App extends Component {
 									entryHandler={this.entryHandler.bind(this)}
 
 								/>
+								{bmiDataIndex}
 							</Segment>
 							{renderLogin}
 						</Grid.Column>
